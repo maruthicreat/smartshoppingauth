@@ -27,7 +27,16 @@
             android:name=".ShopkeeperLog"
             android:label="@string/shopkeeper">
         </activity>
-        <hai></hai>
+
+        <activity
+            android:name=".CustomerSignup"
+            android:label="@string/cussignup">
+        </activity>
+
+        <activity
+            android:name=".ShopkeeperSignup"
+            android:label="@string/shopsignup">
+        </activity>
 
 
     </application>

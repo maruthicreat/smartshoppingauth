@@ -59,6 +59,7 @@
             android:layout_marginRight="17dp"
             android:layout_marginTop="29dp"
             android:background="@drawable/signupbutton"
+            android:onClick="callSignup"
             android:text="signup" />
 
         <TextView

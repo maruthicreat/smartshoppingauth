@@ -1,6 +1,7 @@
 package com.example.maruthiraja.smartshopping;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -24,5 +25,9 @@ public class ShopkeeperLog extends Activity{
         {
             System.out.println("success");
         }
+    }
+
+    public void callSignup(View view){
+        startActivity(new Intent(ShopkeeperLog.this, ShopkeeperSignup.class));
     }
 }

@@ -2,4 +2,16 @@
     <string name="app_name">smart shopping</string>
     <string name="customer">Customer</string>
     <string name="shopkeeper">shopkeeper</string>
+    <string name="cussignup">customersignup</string>
+    <string name="shopsignup">shopkeepersignup</string>
+    <string name="mail_id" >Email Id</string>
+    <string name="user_id">User Id</string>
+    <string name="password">Password</string>
+    <string name="customersignup">SIGNUP</string>
+    <string name="shopkeepsignup">SIGNUP</string>
+    <string name="mail_idshop">Mail Id</string>
+    <string name="user_id_shop">User Id</string>
+    <string name="shopkeeper_signup">SHOPKEEPER SIGNUP</string>
+    <string name="customer_signup">CUSTOMER SIGNUP</string>
+    <string name="signup">SIGNUP</string>
 </resources>

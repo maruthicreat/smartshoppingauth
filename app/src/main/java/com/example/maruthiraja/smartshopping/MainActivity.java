@@ -19,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
     public void customerLogin(View v)
     {
         startActivity(new Intent(MainActivity.this, CustomerLog.class));
-        System.out.println("hai");
+        //System.out.println("hai");
 
     }
 
     public void shopKeeperLogin(View v)
     {
         startActivity(new Intent(MainActivity.this, ShopkeeperLog.class));
-        System.out.println("hai");
+        //System.out.println("hai");
     }
 
     /*public void addData(View view){

@@ -10,12 +10,12 @@
         android:background="@color/colorPrimaryDark">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editUsname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/button3"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="198dp"
+            android:layout_marginTop="142dp"
             android:ems="10"
             android:hint="User Name"
             android:inputType="textPersonName"
@@ -23,13 +23,12 @@
             android:textColorHint="@android:color/background_light" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editPassId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/editText"
-            android:layout_alignStart="@+id/editText"
-            android:layout_below="@+id/editText"
-            android:layout_marginTop="53dp"
+            android:layout_alignLeft="@+id/editUsname"
+            android:layout_alignStart="@+id/editUsname"
+            android:layout_centerVertical="true"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
@@ -40,11 +39,11 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText2"
-            android:onClick="signin"
+            android:layout_below="@+id/editPassId"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="54dp"
+            android:layout_marginTop="72dp"
             android:background="@drawable/loginbutton"
+            android:onClick="signin"
             android:text="LOGIN" />
 
         <Button

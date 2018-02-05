@@ -21,23 +21,31 @@
                 android:id="@+id/menu"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@mipmap/ic_menu_white_24dp" />
+                android:layout_gravity="left|center"
+                android:onClick="opendrawer"
+                android:layout_marginLeft="10dp"
+                android:background="@mipmap/ic_menu_white_24dp"
+                android:foregroundGravity="left" />
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="310dp"
+                android:layout_width="283dp"
                 android:layout_height="50dp"
-                android:layout_gravity="center"
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="10dp"
                 android:contentDescription="TODO"
+                android:foregroundGravity="center"
                 app:srcCompat="@mipmap/letter_logo_change_min" />
 
             <Button
                 android:id="@+id/more"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:background="@mipmap/ic_more_vert_white_24dp" />
+                android:onClick="showPopup"
+                android:layout_gravity="right|center"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/ic_more_vert_white_24dp"
+                android:foregroundGravity="right" />
         </GridLayout>
 
     </android.support.design.widget.AppBarLayout>

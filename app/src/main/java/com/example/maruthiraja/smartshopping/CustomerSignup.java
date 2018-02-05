@@ -2,6 +2,7 @@ package com.example.maruthiraja.smartshopping;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,6 +38,13 @@ public class CustomerSignup extends Activity{
         mDatabase = FirebaseDatabase.getInstance().getReference("CustomerSignup");
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(CustomerSignup.this,CustomerLog.class));
+        finish();
+    }
+
+
     public void storeUserData(View view)
     {
 
@@ -54,6 +63,18 @@ public class CustomerSignup extends Activity{
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful())
+                                        {
+                                            Toast.makeText(CustomerSignup.this, "Verification email sent to your Email id..!", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else {
+                                            Toast.makeText(CustomerSignup.this, "Failed to sent the Email Verification..! ", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                                 String u_id = firebaseAuth.getCurrentUser().getUid();
                                 DatabaseReference c_uid = mDatabase.child(u_id);
                                 c_uid.child("user_id").setValue("1");
@@ -62,9 +83,15 @@ public class CustomerSignup extends Activity{
                                 progressDialog.dismiss();
                                 Toast.makeText(CustomerSignup.this, "You are Successfully Signed up...!!!", Toast.LENGTH_SHORT).show();
                             } else {
-                                progressDialog.dismiss();
-                                Toast.makeText(CustomerSignup.this, "You are Already Signed up...!!!", Toast.LENGTH_SHORT).show();
-                            }
+                                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                    Toast.makeText(CustomerSignup.this, "User with this email already exist.", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+                                else {
+                                    Toast.makeText(CustomerSignup.this, "Please Enter the valid mail id.", Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+                                }
                         }
                     });
                 }

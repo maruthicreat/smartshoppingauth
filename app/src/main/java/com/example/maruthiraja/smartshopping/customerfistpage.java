@@ -36,6 +36,7 @@ public class customerfistpage extends AppCompatActivity
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() == null){
                     startActivity(new Intent(customerfistpage.this,CustomerLog.class));
+                    finish();
                 }
             }
         };
@@ -73,6 +74,7 @@ public class customerfistpage extends AppCompatActivity
         } else {
             super.onBackPressed();
             startActivity(new Intent(customerfistpage.this,MainActivity.class));
+            finish();
         }
     }
 
@@ -100,6 +102,7 @@ public class customerfistpage extends AppCompatActivity
         {
             mAuth.signOut();
            startActivity( new Intent(customerfistpage.this,CustomerLog.class));
+           finish();
         }
 
         return super.onOptionsItemSelected(item);

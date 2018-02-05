@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -54,6 +55,18 @@ public class ShopkeeperSignup extends Activity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                    {
+                                        Toast.makeText(ShopkeeperSignup.this, "Verification email sent to your Email id..!", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        Toast.makeText(ShopkeeperSignup.this, "Failed to sent the Email Verification..! ", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                             String u_id = firebaseAuth.getCurrentUser().getUid();
                             DatabaseReference c_uid = mDatabase.child(u_id);
                             c_uid.child("user_id").setValue("2");
@@ -62,8 +75,14 @@ public class ShopkeeperSignup extends Activity{
                             progressDialog.dismiss();
                             Toast.makeText(ShopkeeperSignup.this, "You are Successfully Signed up...!!!", Toast.LENGTH_SHORT).show();
                         } else {
-                            progressDialog.dismiss();
-                            Toast.makeText(ShopkeeperSignup.this, "You are Already Signed up...!!!", Toast.LENGTH_SHORT).show();
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Toast.makeText(ShopkeeperSignup.this, "User with this email already exist.", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            }
+                            else {
+                                Toast.makeText(ShopkeeperSignup.this, "Please Enter the valid mail id.", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                            }
                         }
                     }
                 });
@@ -73,5 +92,4 @@ public class ShopkeeperSignup extends Activity{
             }
         }
     }
-
 }

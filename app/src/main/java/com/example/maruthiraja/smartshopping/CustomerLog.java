@@ -38,6 +38,7 @@ public class CustomerLog extends Activity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser() != null){
                     startActivity(new Intent(CustomerLog.this,customerfistpage.class));
+                    finish();
                 }
             }
         };
@@ -52,10 +53,12 @@ public class CustomerLog extends Activity {
     @Override
     public void onBackPressed() {
             startActivity(new Intent(CustomerLog.this,MainActivity.class));
+            finish();
     }
 
     public void callSignup(View view){
         startActivity(new Intent(CustomerLog.this, CustomerSignup.class));
+        finish();
     }
 
     public void signin(View view)

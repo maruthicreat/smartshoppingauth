@@ -23,12 +23,12 @@ public class CustomerSignup extends Activity{
     DatabaseReference mDatabase;
     FirebaseAuth firebaseAuth;
     ProgressDialog progressDialog;
-    EditText userId,emailId,password;
+    EditText repass,emailId,password;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cussignuppage);
-        userId = (EditText)findViewById(R.id.CUserId);
+        repass = (EditText)findViewById(R.id.Cretypepass);
         emailId = (EditText) findViewById(R.id.CEmail);
         password = (EditText) findViewById(R.id.CPass);
         progressDialog = new ProgressDialog(this);
@@ -38,40 +38,39 @@ public class CustomerSignup extends Activity{
 
     public void storeUserData(View view)
     {
-        if(TextUtils.isEmpty(userId.getText()) && TextUtils.isEmpty(userId.getText()) && TextUtils.isEmpty(userId.getText()))
-        {
-            Toast.makeText(this, "Don't leave blank field", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            final String userid = userId.getText().toString().trim();
+
+            final String rep = repass.getText().toString().trim();
             final String emailid = emailId.getText().toString().trim();
             final String passwordid = password.getText().toString().trim();
-            if (TextUtils.isEmpty(userid) && TextUtils.isEmpty(emailid) && TextUtils.isEmpty(passwordid)){
+            if (TextUtils.isEmpty(rep) && TextUtils.isEmpty(emailid) && TextUtils.isEmpty(passwordid)){
                 Toast.makeText(this, "Pls fill the text fields...!!!", Toast.LENGTH_SHORT).show();
             }
             else {
-                progressDialog.setMessage("Signing Up...!!!");
-                progressDialog.show();
-                firebaseAuth.createUserWithEmailAndPassword(userid,passwordid).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful())
-                        {
-                            String u_id = firebaseAuth.getCurrentUser().getUid();
-                            DatabaseReference c_uid = mDatabase.child(u_id);
-                            c_uid.child("user_id").setValue(userid);
-                            c_uid.child("mail_id").setValue(emailid);
-                            c_uid.child("password").setValue(passwordid);
-                            progressDialog.dismiss();
-                            Toast.makeText(CustomerSignup.this, "You are Successfully Signed up...!!!", Toast.LENGTH_SHORT).show();
+                if (rep.equals(passwordid))
+                {
+                    progressDialog.setMessage("Signing Up...!!!");
+                    progressDialog.show();
+                    firebaseAuth.createUserWithEmailAndPassword(emailid, passwordid).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                String u_id = firebaseAuth.getCurrentUser().getUid();
+                                DatabaseReference c_uid = mDatabase.child(u_id);
+                                c_uid.child("user_id").setValue("1");
+                                c_uid.child("mail_id").setValue(emailid);
+                                c_uid.child("password").setValue(passwordid);
+                                progressDialog.dismiss();
+                                Toast.makeText(CustomerSignup.this, "You are Successfully Signed up...!!!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                progressDialog.dismiss();
+                                Toast.makeText(CustomerSignup.this, "You are Already Signed up...!!!", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else {
-                            progressDialog.dismiss();
-                            Toast.makeText(CustomerSignup.this, "You are Already Signed up...!!!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    });
+                }
+                else {
+                    Toast.makeText(this, "Pls Check the Re-Type Password..!!!", Toast.LENGTH_SHORT).show();
+                }
             }
-        }
     }
 }

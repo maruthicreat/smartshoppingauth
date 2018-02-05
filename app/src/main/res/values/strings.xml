@@ -24,4 +24,6 @@
     <string name="action_logout">Logout</string>
     <string name="title_activity_customerfistpage">customerfistpage</string>
     <string name="title_activity_shopkeeperfirstpage">shopkeeperfirstpage</string>
+    <string name="re_type_password">Re-Type password</string>
+
 </resources>

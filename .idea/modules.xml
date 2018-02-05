@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smartshopping.iml" filepath="$PROJECT_DIR$/smartshopping.iml" />
+      <module fileurl="file://C:\Users\maruthiraja\AndroidStudioProjects\smartshoppingauth\smartshopping.iml" filepath="C:\Users\maruthiraja\AndroidStudioProjects\smartshoppingauth\smartshopping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartshoppingauth.iml" filepath="$PROJECT_DIR$/smartshoppingauth.iml" />
     </modules>
   </component>
 </project>

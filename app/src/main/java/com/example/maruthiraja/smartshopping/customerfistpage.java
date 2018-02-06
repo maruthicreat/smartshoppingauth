@@ -10,10 +10,14 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -78,12 +82,47 @@ public class customerfistpage extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.customerfistpage, menu);
-        return true;
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.customerfistpage, popup.getMenu());
+        popup.show();
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(getApplicationContext(),
+                        item.getTitle(), Toast.LENGTH_SHORT).show();
+                int id = item.getItemId();
+                if (id == R.id.action_settings) {
+                    return true;
+                }
+
+                if(id == R.id.action_logout)
+                {
+                    mAuth.signOut();
+                    startActivity( new Intent(customerfistpage.this,CustomerLog.class));
+                    finish();
+                }
+                return true;
+            }
+        });
+
     }
+
+    public void opendrawer(View view)
+    {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.openDrawer(Gravity.LEFT);
+    }
+
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.customerfistpage, menu);
+            return true;
+        }
 
 
     @Override
@@ -92,6 +131,7 @@ public class customerfistpage extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {

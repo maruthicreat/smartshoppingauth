@@ -12,45 +12,23 @@
         android:background="@android:color/black"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <Button
-                android:id="@+id/menu"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="left|center"
-                android:onClick="opendrawer"
-                android:layout_marginLeft="10dp"
-                android:background="@mipmap/ic_menu_white_24dp"
-                android:foregroundGravity="left" />
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="283dp"
-                android:layout_height="50dp"
-                android:layout_gravity="left|center"
-                android:layout_marginLeft="10dp"
-                android:contentDescription="TODO"
-                android:foregroundGravity="center"
-                app:srcCompat="@mipmap/letter_logo_change_min" />
-
-            <Button
-                android:id="@+id/more"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:onClick="showPopup"
-                android:layout_gravity="right|center"
-                android:layout_marginRight="10dp"
-                android:background="@mipmap/ic_more_vert_white_24dp"
-                android:foregroundGravity="right" />
-        </GridLayout>
-
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_customerfistpage" />
+    <include
+        layout="@layout/content_customerfistpage"
+        android:layout_height="509dp"
+        tools:layout_editor_absoluteY="58dp" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary" />
+
+    <com.miguelcatalan.materialsearchview.MaterialSearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

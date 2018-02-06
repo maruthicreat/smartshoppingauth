@@ -20,12 +20,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class customerfistpage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class customerfistpage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mAuth = FirebaseAuth.getInstance();
+        searchView = (MaterialSearchView) findViewById(R.id.search_view);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -63,6 +66,8 @@ public class customerfistpage extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+
 
     @Override
     protected void onStart() {
@@ -121,6 +126,11 @@ public class customerfistpage extends AppCompatActivity
         public boolean onCreateOptionsMenu (Menu menu){
             // Inflate the menu; this adds items to the action bar if it is present.
             getMenuInflater().inflate(R.menu.customerfistpage, menu);
+            getMenuInflater().inflate(R.menu.searchmenu, menu);
+
+            MenuItem item = menu.findItem(R.id.action_search);
+            searchView.setMenuItem(item);
+
             return true;
         }
 

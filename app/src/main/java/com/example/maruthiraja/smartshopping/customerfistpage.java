@@ -37,6 +37,7 @@ public class customerfistpage extends AppCompatActivity
         setSupportActionBar(toolbar);
         mAuth = FirebaseAuth.getInstance();
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
+        searchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override

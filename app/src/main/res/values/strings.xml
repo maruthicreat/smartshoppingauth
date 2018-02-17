@@ -26,5 +26,6 @@
     <string name="title_activity_shopkeeperfirstpage">shopkeeperfirstpage</string>
     <string name="re_type_password">Re-Type password</string>
     <string name="todo">TODO</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

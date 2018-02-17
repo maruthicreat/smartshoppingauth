@@ -52,8 +52,8 @@ public class CustomerLog extends Activity {
 
     @Override
     public void onBackPressed() {
-            startActivity(new Intent(CustomerLog.this,MainActivity.class));
-            finish();
+        super.onBackPressed();
+        finish();
     }
 
     public void callSignup(View view){

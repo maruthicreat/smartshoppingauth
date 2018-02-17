@@ -35,9 +35,10 @@
         android:layout_width="58dp"
         android:layout_height="61dp"
         android:layout_gravity="bottom|end"
+        android:onClick="viewmap"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@android:color/black"
-        app:srcCompat="@mipmap/ic_mail_black_24dp"
+        app:backgroundTint="@android:color/holo_orange_light"
+        app:srcCompat="@mipmap/ic_map_black_24dp"
         tools:layout_editor_absoluteX="310dp"
         tools:layout_editor_absoluteY="490dp" />
 

@@ -2,6 +2,7 @@ package com.example.maruthiraja.smartshopping;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -28,6 +29,7 @@ public class customerfistpage extends AppCompatActivity
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private MaterialSearchView searchView;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +83,21 @@ public class customerfistpage extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
-            startActivity(new Intent(customerfistpage.this,MainActivity.class));
-            finish();
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
         }
     }
 
@@ -126,7 +140,7 @@ public class customerfistpage extends AppCompatActivity
         public boolean onCreateOptionsMenu (Menu menu){
             // Inflate the menu; this adds items to the action bar if it is present.
             getMenuInflater().inflate(R.menu.customerfistpage, menu);
-            getMenuInflater().inflate(R.menu.searchmenu, menu);
+            //getMenuInflater().inflate(R.menu.searchmenu, menu);
 
             MenuItem item = menu.findItem(R.id.action_search);
             searchView.setMenuItem(item);
